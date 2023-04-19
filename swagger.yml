@@ -1,0 +1,109 @@
+openapi: '3.0.2'
+info:
+  title: Ionix challenge API
+  version: '1.0'
+  description: >
+    El servicio Ionix challenge API expone la operación necesarias para el manejo de tareas y usuarios
+servers:
+  - url: 'http://localhost:8080/api/'
+    description: Local Development Environment
+paths:
+  /signup:
+    post:
+      requestBody:
+        description: Objeto con datos requeridos para crear un usuario
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInputModel'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserOutputModel'
+          description: El usuario se ha creado satisfactoriamente
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error al crear el usuario. El mensaje puede variar según el tipo de error
+
+components:
+  schemas:
+    ErrorModel:
+      type: object
+      properties:
+        message:
+          example: El correo ya se encuentra registrado
+    ResponseMessage:
+      type: object
+      properties:
+        message:
+          example: El usuario se ha creado satisfactoriamente
+        data:
+          $ref: '#/components/schemas/UserOutputModel'
+    UserInputModel:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Nombre del usuario
+          example: Juan Rodriguez
+        email:
+          type: string
+          description: Correo electrónico del usuario
+          example: juan@rodriguez.org
+        password:
+          type: string
+          description: Contraseña del usuario. El patrón de la contraseña debe contener minúsculas, mayúsculas, números, simbolos con un mínimo de 8 carácteres
+          example: qwe123ERT@
+        phones:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/PhoneModel'
+    PhoneModel:
+      type: object
+      properties:
+        number:
+          type: integer
+          description: Número de téfono
+          example: 12345678
+        citycode:
+          type: integer
+          description: Código de ciudad
+          example: 9
+        countrycode:
+          type: integer
+          description: Código de país
+          example: 56
+    UserOutputModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID del usuario (UUID)
+          example: 848bb2eb-b170-43be-ada9-d4fd9febd973
+        created:
+          type: string
+          description: Fecha de creación del usuario
+          example: 2023-02-21 23:35:50
+        modified:
+          type: string
+          description: Fecha de modificación del usuario
+          example: 2023-02-21 23:35:50
+        lastlogin:
+          type: string
+          description: Fecha del último ingreso del usuario
+          example: 2023-02-21 23:35:50
+        token:
+          type: string
+          description: Token de acceso de la API (JWT)
+          example: eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiJkZWY3N2ZjMC0...
+        isactive:
+          type: string
+          description: Indica si el usuario sigue habilitado dentro del sistema
+          example: true
