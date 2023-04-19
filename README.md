@@ -6,9 +6,35 @@
 
 ## SOLUCIÓN
 
+Para la solución se realiza una separación entre el diseño y la implementación.
+
 ### DISEÑO
 
+Para el diseño de la solución al ejercicio 1 se comienza definiendo las entidades del dominio, encontrándose dos principales: Usuarios y Tareas
 
+![Diagrama de la solución](docs/images/ionix-entity-diagram-01.png)
+
+Se establecen algunos atributos iniciales que pueden tener estas entidades de negocio y sus relaciones, como se muestra en la siguiente imagen
+
+![Diagrama de la solución](docs/images/ionix-entity-diagram-02.png)
+
+Con esta información más los datos del enunciado se puede desarrollar la intracción interna que podrían tener estas entidades a nivel de capas dentro de la solución. A continuación, se exponen la interacción de las entidades por medio de diagramas de secuencia donde se muestran algunos detalles iniciales de cómo podría ser su implementación y las reglas de la aplicación y negocio
+
+#### CRUD Usuarios
+![Diagrama de la solución](docs/images/ionix-sequence-diagram-01.jpg)
+
+#### CRUD Tareas
+![Diagrama de la solución](docs/images/ionix-sequence-diagram-02.jpg)
+
+En este punto, se pueden tomar decisiones acerca de la tecnología a utilizar, en este caso Java SpringBoot 
+
+Un diseño de la solución de alto nivel se puede diagramar para poder visualizar los artefactos involucrados y sus relaciones
+
+Para el desarrollo de la aplicación se utiliza los principios de [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) aplicado a los casos de uso.
+
+Se intenta desacoplar la solución en capas de tal manera de "proteger" las reglas de negocio de los detalles de la infraestructura utilizando inversión de dependencias y sin anotaciones de SpringBoot para desacoplar, por ejemplo, el DI framework
+
+Se presentan esquemas de cómo se han desarrollado los casos de uso, desde las reglas de negocio hasta la implementación de las interfaces utilizadas
 
 
 ![Diagrama de la solución](docs/images/ionix-challenge-04.png)
