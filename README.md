@@ -30,7 +30,7 @@ En este punto, se pueden tomar decisiones acerca de la tecnología a utilizar, e
 
 ## OPEN API
 
-Se ha diseñado y documentado la API con la herramienta Swagger (Open API)
+Se ha diseñado y documentado la API con la herramienta Swagger (Open API). Enlace al OpenAPI de [IONIX API](https://app.swaggerhub.com/apis-docs/FAQ_CODES/ionix_api_test/1.0.0)
 
 ![Diagrama de la solución](docs/images/ionix-swagger-01.png)
 
@@ -44,11 +44,13 @@ Enlace al OpenAPI de [IONIX API](https://app.swaggerhub.com/apis-docs/FAQ_CODES/
 
 Para el desarrollo de la aplicación se utiliza los principios de [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) aplicado a los casos de uso.
 
+![Diagrama de la solución](docs/images/ionix-clean-diagram-01.png)
+
 Se intenta desacoplar la solución en capas de tal manera de "proteger" las reglas de negocio de los detalles de la infraestructura utilizando inversión de dependencias y sin anotaciones de SpringBoot para desacoplar, por ejemplo, el DI framework
 
-Se presentan esquemas de cómo se han desarrollado los casos de uso, desde las reglas de negocio hasta la implementación de las interfaces utilizadas
+Se presentan esquemas de cómo se han desarrollado los casos de uso, desde las reglas de negocio hasta la implementación de las interfaces utilizadas. A continuación, se presenta el caso de uso para crear un usuario. Los demás casos seguirán el mismo patrón.
 
-**[INSERTAR DIAGRAMA]**
+![Diagrama de la solución](docs/images/ionix-clean-diagram-02.png)
 
 ![Diagrama de la solución](docs/images/ionix-challenge-04.png)
 
