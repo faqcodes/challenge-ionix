@@ -28,7 +28,19 @@ Con esta información más los datos del enunciado se puede desarrollar la intra
 
 En este punto, se pueden tomar decisiones acerca de la tecnología a utilizar, en este caso Java SpringBoot 
 
-Un diseño de la solución de alto nivel se puede diagramar para poder visualizar los artefactos involucrados y sus relaciones
+## OPEN API
+
+Se ha diseñado y documentado la API con la herramienta Swagger (Open API)
+
+![Diagrama de la solución](docs/images/ionix-swagger-01.png)
+
+Se ha agregado seguridad a la API, tanto una API Key como JWT
+
+![Diagrama de la solución](docs/images/ionix-swagger-02.png)
+
+Enlace al OpenAPI de [IONIX API](https://app.swaggerhub.com/apis-docs/FAQ_CODES/ionix_api_test/1.0.0)
+
+## PATRÓN DE DISEÑO ARCHITECTURAL
 
 Para el desarrollo de la aplicación se utiliza los principios de [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) aplicado a los casos de uso.
 
@@ -36,6 +48,7 @@ Se intenta desacoplar la solución en capas de tal manera de "proteger" las regl
 
 Se presentan esquemas de cómo se han desarrollado los casos de uso, desde las reglas de negocio hasta la implementación de las interfaces utilizadas
 
+**[INSERTAR DIAGRAMA]**
 
 ![Diagrama de la solución](docs/images/ionix-challenge-04.png)
 
@@ -76,7 +89,6 @@ A continuación, se presentan algunas buenas prácticas que se podrían sugerir 
 - Utilizar herramientas de control de versiones como Git para gestionar el código fuente, facilitando la colaboración y el seguimiento de los cambios.
 - Realizar pruebas unitarias y de integración para validar que el código funcione correctamente y para detectar problemas tempranamente.
 - Utilizar un enfoque modular en el desarrollo, permitiendo así un mantenimiento más fácil y la reutilización de código en futuros proyectos.
-- Utilizar técnicas de programación orientada a objetos para lograr un código más escalable y estructurado.
 
 ### Metodología:
 - Utilizar una metodología de desarrollo ágil, como Scrum o Kanban, para facilitar la colaboración y el seguimiento del progreso del proyecto.
