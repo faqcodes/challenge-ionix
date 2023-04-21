@@ -59,11 +59,11 @@ Se presentan esquemas de cómo se han desarrollado los casos de uso, desde las r
 Plan de actividades para abarcar el requerimiento (con ayuda de ChatGPT):
 1. Reunión con el cliente: Se debe realizar una reunión con el cliente para entender en detalle el requerimiento, aclarar dudas y establecer expectativas claras.
 2. Análisis de los requisitos del cliente: El equipo de preventa debe analizar los requisitos del cliente y documentarlos para su posterior referencia.
-3. Investigación de tecnologías: Se debe investigar las tecnologías más adecuadas para la construcción de una aplicación móvil, considerando las necesidades y requisitos del cliente.
-4. Análisis de la API Omnichanel: El equipo de preventa debe analizar en detalle la API Omnichanel que será utilizada para la comunicación con el stock, registro de ventas y otros aspectos relacionados con los productos.
+3. Investigación de tecnologías: Se debe investigar las tecnologías más adecuadas para la construcción de la aplicación móvil, considerando las necesidades y requisitos del cliente.
+4. Análisis de la API Omnichanel: Se debe analizar en detalle la API Omnichanel que será utilizada para la comunicación con el stock, registro de ventas y otros aspectos relacionados con los productos.
 5. Evaluación de opciones de arquitectura: Se debe evaluar diferentes opciones de arquitectura para la aplicación móvil, considerando la selección de tecnología, la API Omnichanel y otros requisitos del cliente, como el rendimiento necesario.
-6. Diseño de la arquitectura: Se debe diseñar la arquitectura de la aplicación móvil, considerando los requisitos del cliente, la tecnología seleccionada y la API Omnichanel.
-7. Evaluación de herramientas de desarrollo: Se debe evaluar diferentes herramientas de desarrollo que puedan ser utilizadas para la construcción de la aplicación móvil, considerando los requisitos del cliente y la tecnología seleccionada.
+6. Diseño de la arquitectura: Se debe diseñar la arquitectura de la aplicación móvil, considerando los requisitos del cliente, la tecnología seleccionada, el backend y la API Omnichanel.
+7. Evaluación de herramientas de desarrollo: Se debe evaluar diferentes herramientas de desarrollo que puedan ser utilizadas para la construcción de la aplicación móvil y el backend, considerando los requisitos del cliente y la tecnología seleccionada.
 8. Selección de herramientas de desarrollo: En base a la evaluación anterior, se debe seleccionar las herramientas de desarrollo adecuadas para la construcción de la aplicación móvil.
 9. Desarrollo del backend: Se debe desarrollar el backend para la aplicación móvil, considerando los requisitos del cliente y la integración con la API Omnichanel.
 10. Desarrollo de la aplicación móvil: Se debe desarrollar la aplicación móvil, considerando la arquitectura y los requisitos del cliente.
@@ -75,7 +75,7 @@ Plan de actividades para abarcar el requerimiento (con ayuda de ChatGPT):
 
 Para la arquitectura de la aplicación móvil se propone una solución híbrida utilizando una plataforma de desarrollo multiplataforma como Ionic o React Native. Esto debido a que no es necesario que la aplicación despliegue gráficos o animaciones, esta solución permitiría utilizar un conjunto de tecnologías web como HTML, CSS y JavaScript, y desplegar la aplicación móvil tanto en iOS como en Android.
 
-El backend se desarrollaría utilizando un lenguaje de programación como Java o Python y se utilizaría una base de datos relacional para el registro de sesiones, usuarios, estadísticas de uso, sincronización con demás canales y otros aspectos relacionados con la aplicación móvil. La comunicación con la API Omnichanel externa se realizaría mediante una capa de servicio web RESTful.
+El backend se desarrollaría utilizando un lenguaje de programación como Java o Python y se utilizaría una base de datos relacional para el registro de sesiones, usuarios, estadísticas de uso, sincronización con demás canales y otros aspectos relacionados con la aplicación móvil. La comunicación con la API Omnichanel externa se realizaría mediante una capa de servicio web RESTful. El desarrollo del backend se realizaría con microservicios que se desplegaría en alguna plataforma Cloud utilizando Docker/K8s o utilizando directamente servicios de la plataforma como Functions (lambda function, cloud functions, etc.) 
 
 La arquitectura propuesta permitiría desarrollar una aplicación móvil robusta y escalable, con un backend sólido que cumpla con los requisitos del cliente y con la integración de la API Omnichanel.
 
