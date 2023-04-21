@@ -1,11 +1,14 @@
 package com.faqcodes.tasks.models;
 
-public class ResponseMessage<T> {
-  private final String code;
+import java.util.List;
+
+public class Response<T> {
+  private final Code code;
   private final String message;
+  private final List<ErrorList> errors;
   private final T data;
 
-  public String getCode() {
+  public Code getCode() {
     return code;
   }
 
@@ -17,9 +20,10 @@ public class ResponseMessage<T> {
     return data;
   }
 
-  public ResponseMessage(String code, String message, T data) {
+  public Response(Code code, String message, List<ErrorList> errors, T data) {
     this.code = code;
     this.message = message;
+    this.errors = errors;
     this.data = data;
   }
 }

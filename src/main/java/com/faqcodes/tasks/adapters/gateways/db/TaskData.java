@@ -16,6 +16,9 @@ public class TaskData {
   // @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
 
+  @Column(name = "id", table = "users")
+  private String userId;
+
   @Column(name = "title")
   private String title;
 
@@ -44,5 +47,33 @@ public class TaskData {
     this.overdueAt = overdueAt;
     this.comment = comment;
     this.status = status.toString();
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public String getUserId() {
+    return userId;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public LocalDateTime getOverdueAt() {
+    return overdueAt;
+  }
+
+  public String getComment() {
+    return comment;
+  }
+
+  public String getStatus() {
+    return status;
   }
 }

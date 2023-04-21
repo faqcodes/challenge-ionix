@@ -1,7 +1,6 @@
 package com.faqcodes.tasks.adapters.gateways.db;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.faqcodes.tasks.models.Role;
@@ -44,7 +43,7 @@ public class UserData {
     super();
   }
 
-  public UserData(String id, String name, String email, String password, LocalDateTime lastLogin, Role role,
+  public UserData(String id, String name, String email, String password, LocalDateTime lastlogin, Role role,
   List<TaskData> tasks) {
     super();
     this.id = id;
@@ -54,5 +53,33 @@ public class UserData {
     this.lastlogin = lastlogin;
     this.role = role.toString();
     this.tasks = tasks;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public LocalDateTime getLastlogin() {
+    return lastlogin;
+  }
+
+  public String getRole() {
+    return role;
+  }
+
+  public List<TaskData> getTasks() {
+    return tasks;
   }
 }

@@ -13,7 +13,13 @@ public class UserModel {
   private final Role role;
   private final List<TaskModel> tasks;
 
-  public UserModel(String id, String name, String email, String password, LocalDateTime lastLogin, Role role,
+  public UserModel(
+      String id,
+      String name,
+      String email,
+      String password,
+      LocalDateTime lastLogin,
+      Role role,
       List<TaskModel> tasks) {
     this.id = id;
     this.name = name;

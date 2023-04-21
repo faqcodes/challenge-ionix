@@ -15,13 +15,19 @@ public class UserEntity implements User {
   private final Role role;
   private final List<Task> tasks;
 
-  public UserEntity(String id, String name, String email, String password, LocalDateTime lastLogin, Role role,
+  public UserEntity(
+      String id,
+      String name,
+      String email,
+      String password,
+      LocalDateTime lastlogin,
+      Role role,
       List<Task> tasks) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.password = password;
-    this.lastLogin = lastLogin;
+    this.lastLogin = lastlogin;
     this.role = role;
     this.tasks = tasks;
   }
@@ -54,4 +60,21 @@ public class UserEntity implements User {
     return tasks;
   }
 
+  public boolean hasLastLogin() {
+    // Indica si el usuario ha iniciado sesión
+    // Este valor se establece al cambiar contraseña
+    return this.lastLogin != null;
+  }
+
+  public boolean canCreate() {
+    // Un usuario con ROl Administrador puede crear
+    // usuarios con Rol EJECUTOR o AUDITOR
+    return this.role != Role.ADMINISTRADOR;
+  }
+
+  public boolean canAssign() {
+    // Solo se puede asignar una tarea a usuarios
+    // con Rol EJECUTOR
+    return this.role == Role.EJECUTOR;
+  }
 }

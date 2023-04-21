@@ -1,7 +1,7 @@
 package com.faqcodes.tasks.usecases;
 
-import com.faqcodes.tasks.models.ResponseMessage;
+import com.faqcodes.tasks.models.Response;
 
 public interface UseCase<T, U> {
-  ResponseMessage<U> execute(T inputModel);
+  Response<U> execute(T model);
 }

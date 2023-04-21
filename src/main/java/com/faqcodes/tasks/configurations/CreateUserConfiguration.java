@@ -41,7 +41,7 @@ public class CreateUserConfiguration {
   // }
 
   @Bean
-  Presenter<UserInputModel, UserOutputModel> presenter() {
+  Presenter<UserOutputModel> presenter() {
     return new CreateUserPresenter();
   }
 
@@ -49,7 +49,7 @@ public class CreateUserConfiguration {
   UseCase<UserInputModel, UserOutputModel> createUserUseCase(
       CreateUser createUser,
       SaveUser saveUser,
-      Presenter<UserInputModel, UserOutputModel> presenter) {
+      Presenter<UserOutputModel> presenter) {
     return new CreateUserUseCase(createUser, saveUser, presenter);
   }
 

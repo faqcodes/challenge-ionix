@@ -1,14 +1,11 @@
 package com.faqcodes.tasks.usecases;
 
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.UUID;
 
 import com.faqcodes.tasks.adapters.gateways.SaveUser;
 import com.faqcodes.tasks.adapters.presenters.Presenter;
 import com.faqcodes.tasks.entities.CreateUser;
-import com.faqcodes.tasks.entities.Task;
-import com.faqcodes.tasks.models.ResponseMessage;
+import com.faqcodes.tasks.models.Response;
 import com.faqcodes.tasks.models.UserInputModel;
 import com.faqcodes.tasks.models.UserModel;
 import com.faqcodes.tasks.models.UserOutputModel;
@@ -17,19 +14,19 @@ public class CreateUserUseCase implements UseCase<UserInputModel, UserOutputMode
 
   private final CreateUser createUser;
   private final SaveUser repository;
-  private final Presenter<UserInputModel, UserOutputModel> presenter;
+  private final Presenter<UserOutputModel> presenter;
 
   public CreateUserUseCase(
       CreateUser createUser,
       SaveUser repository,
-      Presenter<UserInputModel, UserOutputModel> presenter) {
+      Presenter<UserOutputModel> presenter) {
     this.createUser = createUser;
     this.repository = repository;
     this.presenter = presenter;
   }
 
   @Override
-  public ResponseMessage<UserOutputModel> execute(UserInputModel inputModel) {
+  public Response<UserOutputModel> execute(UserInputModel inputModel) {
     // Get ID
     final var id = UUID.randomUUID().toString();
 
@@ -43,6 +40,10 @@ public class CreateUserUseCase implements UseCase<UserInputModel, UserOutputMode
         inputModel.getRole(),
         null);
 
+    if (user.isEmpty()) {
+      return null;
+    }
+
     // -----------------------------------------------
     // Validate User Entity Business Rules
     // -----------------------------------------------
@@ -54,11 +55,11 @@ public class CreateUserUseCase implements UseCase<UserInputModel, UserOutputMode
     // Create User Data
     final var userData = new UserModel(
         id,
-        user.getName(),
-        user.getEmail(),
-        user.getPassword(),
+        user.get().getName(),
+        user.get().getEmail(),
+        user.get().getPassword(),
         null,
-        user.getRole(),
+        user.get().getRole(),
         null);
 
     try {
@@ -66,18 +67,18 @@ public class CreateUserUseCase implements UseCase<UserInputModel, UserOutputMode
       repository.save(userData);
     } catch (Exception e) {
       // Return error information
-      return presenter.errorResponse(e.getMessage(), null);
+      return presenter.error(e.getMessage(), null);
     }
 
     // Create output Data
     final var outputModel = new UserOutputModel(
         id,
-        user.getName(),
-        user.getEmail(),
-        user.getRole());
+        user.get().getName(),
+        user.get().getEmail(),
+        user.get().getRole());
 
     // Return success information
-    return presenter.successResponse("El usuario se ha creado satisfactoriamente", outputModel);
+    return presenter.success("El usuario se ha creado satisfactoriamente", outputModel);
   }
 
 }

@@ -1,10 +1,14 @@
 package com.faqcodes.tasks.adapters.gateways;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.faqcodes.tasks.adapters.gateways.db.TaskData;
 import com.faqcodes.tasks.adapters.gateways.db.UserData;
 import com.faqcodes.tasks.adapters.gateways.db.UserRepository;
+import com.faqcodes.tasks.models.Role;
+import com.faqcodes.tasks.models.Status;
+import com.faqcodes.tasks.models.TaskModel;
 import com.faqcodes.tasks.models.UserModel;
 
 public class SaveUserGateway implements SaveUser {
@@ -28,17 +32,14 @@ public class SaveUserGateway implements SaveUser {
                 task.getDescription(),
                 task.getComment(),
                 task.getOverdueAt(),
-                task.getStatus()
-            )
-        )
-    );
+                task.getStatus())));
 
     var userData = new UserData(
         model.getId(),
         model.getName(),
         model.getEmail(),
         model.getPassword(),
-        null,
+        model.getLastLogin(),
         model.getRole(),
         taskData);
 
@@ -47,4 +48,17 @@ public class SaveUserGateway implements SaveUser {
     return user != null;
   }
 
+  @Override
+  public UserModel getById(String userId) {
+    var userData = repository.getReferenceById(userId);
+
+    return new UserModel(
+        userData.getId(),
+        userData.getName(),
+        userData.getEmail(),
+        userData.getPassword(),
+        userData.getLastlogin(),
+        Role.valueOf(userData.getRole()),
+        null);
+  }
 }

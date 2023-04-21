@@ -1,19 +1,22 @@
 package com.faqcodes.tasks.adapters.presenters;
 
-import com.faqcodes.tasks.models.ResponseMessage;
-import com.faqcodes.tasks.models.UserInputModel;
+import java.util.List;
+
+import com.faqcodes.tasks.models.Code;
+import com.faqcodes.tasks.models.ErrorList;
+import com.faqcodes.tasks.models.Response;
 import com.faqcodes.tasks.models.UserOutputModel;
 
-public class CreateUserPresenter implements Presenter<UserInputModel, UserOutputModel> {
+public class CreateUserPresenter implements Presenter<UserOutputModel> {
 
   @Override
-  public ResponseMessage<UserOutputModel> successResponse(String message, UserOutputModel outputModel) {
-    return new ResponseMessage<>("SUCCESS", message, outputModel);
+  public Response<UserOutputModel> success(String message, UserOutputModel userOutputModel) {
+    return new Response<>(Code.SUCCESS, message, null, userOutputModel);
   }
 
   @Override
-  public ResponseMessage<UserOutputModel> errorResponse(String message, UserInputModel inputModel) {
-    return new ResponseMessage<>("ERROR", message, null);
+  public Response<UserOutputModel> error(String message, List<ErrorList> errors) {
+    return new Response<>(Code.ERROR, message, errors, null);
   }
   
 }
