@@ -25,4 +25,28 @@ public class TaskCreateResponse {
     this.comment = comment;
     this.status = status;
   }
+
+  public String getId() {
+    return id;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public LocalDateTime getOverdueAt() {
+    return overdueAt;
+  }
+
+  public String getComment() {
+    return comment;
+  }
+
+  public Status getStatus() {
+    return status;
+  }
 }
