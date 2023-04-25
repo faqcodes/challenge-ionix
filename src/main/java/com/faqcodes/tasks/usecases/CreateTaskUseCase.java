@@ -6,6 +6,7 @@ import java.util.UUID;
 import com.faqcodes.tasks.adapters.gateways.SaveUser;
 import com.faqcodes.tasks.adapters.presenters.Presenter;
 import com.faqcodes.tasks.entities.CreateTask;
+import com.faqcodes.tasks.models.ErrorData;
 import com.faqcodes.tasks.models.Response;
 import com.faqcodes.tasks.models.TaskCreateRequest;
 import com.faqcodes.tasks.models.TaskCreateResponse;
@@ -34,11 +35,15 @@ public class CreateTaskUseCase implements UseCase<TaskCreateRequest, TaskCreateR
     // Get related User
     final var user = repository.getById(taskCreateRequest.getUserId());
     if (user == null) {
-      // TODO: Validate
-      return null;
+      var error = new ErrorData(
+          "ERROR",
+          "El usuario no fue encontrado");
+
+      return presenter.error("ERROR", Arrays.asList(error));
     }
+
     // Create Task Entity
-    final var task = createTask.create(
+    final var result = createTask.create(
         taskId,
         taskCreateRequest.getUserId(),
         taskCreateRequest.getTitle(),
@@ -47,16 +52,16 @@ public class CreateTaskUseCase implements UseCase<TaskCreateRequest, TaskCreateR
         null,
         null);
 
-    if (task.isEmpty()) {
-      // TODO: Validate
-      return null;
+    if (!result.isSuccess()) {
+      return presenter.error("ERROR", Arrays.asList(result.getError()));
     }
-    // -----------------------------------------------
-    // Validate User Entity Business Rules
-    // -----------------------------------------------
+
+    final var task = result.getEntity();
 
     // -----------------------------------------------
     // Validate User Application Rules
+    // -----------------------------------------------
+
     // -----------------------------------------------
 
     // Create User Data
@@ -69,12 +74,12 @@ public class CreateTaskUseCase implements UseCase<TaskCreateRequest, TaskCreateR
         user.getRole(),
         Arrays.asList(
             new TaskModel(
-                task.get().getId(),
-                task.get().getTitle(),
-                task.get().getDescription(),
-                task.get().getOverdueAt(),
-                task.get().getComment(),
-                task.get().getStatus())));
+                task.getId(),
+                task.getTitle(),
+                task.getDescription(),
+                task.getOverdueAt(),
+                task.getComment(),
+                task.getStatus())));
 
     try {
       // Save User
@@ -86,12 +91,12 @@ public class CreateTaskUseCase implements UseCase<TaskCreateRequest, TaskCreateR
 
     // Create output Data
     final var outputModel = new TaskCreateResponse(
-        task.get().getId(),
-        task.get().getTitle(),
-        task.get().getDescription(),
-        task.get().getOverdueAt(),
-        task.get().getComment(),
-        task.get().getStatus());
+        task.getId(),
+        task.getTitle(),
+        task.getDescription(),
+        task.getOverdueAt(),
+        task.getComment(),
+        task.getStatus());
 
     // Return success information
     return presenter.success("La tarea se ha creado satisfactoriamente", outputModel);

@@ -1,5 +1,6 @@
 package com.faqcodes.tasks.usecases;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 import com.faqcodes.tasks.adapters.gateways.SaveUser;
@@ -31,7 +32,7 @@ public class CreateUserUseCase implements UseCase<UserInputModel, UserOutputMode
     final var id = UUID.randomUUID().toString();
 
     // Create User Entity
-    final var user = createUser.create(
+    var result = createUser.create(
         id,
         inputModel.getName(),
         inputModel.getEmail(),
@@ -40,26 +41,26 @@ public class CreateUserUseCase implements UseCase<UserInputModel, UserOutputMode
         inputModel.getRole(),
         null);
 
-    if (user.isEmpty()) {
-      return null;
+    if (!result.isSuccess()) {
+      return presenter.error("BUSINESS ERROR", Arrays.asList(result.getError()));
     }
 
-    // -----------------------------------------------
-    // Validate User Entity Business Rules
-    // -----------------------------------------------
+    final var user = result.getEntity();
 
     // -----------------------------------------------
     // Validate User Application Rules
     // -----------------------------------------------
 
+    // -----------------------------------------------
+
     // Create User Data
     final var userData = new UserModel(
         id,
-        user.get().getName(),
-        user.get().getEmail(),
-        user.get().getPassword(),
+        user.getName(),
+        user.getEmail(),
+        user.getPassword(),
         null,
-        user.get().getRole(),
+        user.getRole(),
         null);
 
     try {
@@ -73,12 +74,11 @@ public class CreateUserUseCase implements UseCase<UserInputModel, UserOutputMode
     // Create output Data
     final var outputModel = new UserOutputModel(
         id,
-        user.get().getName(),
-        user.get().getEmail(),
-        user.get().getRole());
+        user.getName(),
+        user.getEmail(),
+        user.getRole());
 
     // Return success information
     return presenter.success("El usuario se ha creado satisfactoriamente", outputModel);
   }
-
 }

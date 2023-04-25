@@ -64,6 +64,7 @@ public class TaskEntity implements Task {
   }
 
   public boolean canUpdate() {
+    // Solo se puede actualizar si el estado no es ASIGNADA
     return this.status == Status.ASIGNADA;
   }
 }

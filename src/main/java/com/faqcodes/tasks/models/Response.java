@@ -5,7 +5,7 @@ import java.util.List;
 public class Response<T> {
   private final Code code;
   private final String message;
-  private final List<ErrorList> errors;
+  private final List<ErrorData> errors;
   private final T data;
 
   public Code getCode() {
@@ -20,7 +20,7 @@ public class Response<T> {
     return data;
   }
 
-  public Response(Code code, String message, List<ErrorList> errors, T data) {
+  public Response(Code code, String message, List<ErrorData> errors, T data) {
     this.code = code;
     this.message = message;
     this.errors = errors;

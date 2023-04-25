@@ -1,12 +1,12 @@
 package com.faqcodes.tasks.entities;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
+import com.faqcodes.tasks.models.Result;
 import com.faqcodes.tasks.models.Status;
 
 public interface CreateTask {
-  Optional<Task> create(
+  Result<Task> create(
       String id,
       String userId,
       String title,
